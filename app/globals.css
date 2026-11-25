@@ -1,0 +1,147 @@
+@import "tailwindcss";
+
+@theme {
+  --color-chalk: #f4f2ee;
+  --color-paper: #fbfaf7;
+  --color-raised: #ebe8e2;
+  --color-ink: #141414;
+  --color-ink-2: #4c4944;
+  --color-muted: #69655e;
+  --color-line: rgb(20 20 20 / 0.1);
+  --color-oxblood: #7a2430;
+  --color-oxblood-deep: #5f1b25;
+
+  --font-sans: "DM Sans Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Bodoni Moda Variable", "Didot", "Bodoni 72", Georgia, serif;
+
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  html {
+    background: var(--color-chalk);
+    color: var(--color-ink);
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    font-family: var(--font-sans);
+    font-size: 15px;
+    line-height: 1.55;
+    font-feature-settings: "ss01";
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-oxblood);
+    outline-offset: 3px;
+  }
+  ::selection {
+    background: var(--color-oxblood);
+    color: #fff;
+  }
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+}
+
+@layer components {
+  .display {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.04;
+    font-optical-sizing: auto;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    height: 48px;
+    padding: 0 24px;
+    border-radius: 2px;
+    font-size: 14px;
+    font-weight: 500;
+    transition:
+      background-color 160ms var(--ease-out-soft),
+      color 160ms var(--ease-out-soft),
+      border-color 160ms var(--ease-out-soft),
+      transform 120ms var(--ease-out-soft);
+  }
+  .btn:active {
+    transform: scale(0.98);
+  }
+  .btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  .btn-primary {
+    background: var(--color-ink);
+    color: var(--color-chalk);
+  }
+  .btn-primary:hover {
+    background: var(--color-oxblood-deep);
+  }
+  .btn-secondary {
+    border: 1px solid rgb(20 20 20 / 0.24);
+    color: var(--color-ink);
+  }
+  .btn-secondary:hover {
+    border-color: var(--color-ink);
+  }
+  .link {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+    text-decoration-color: rgb(20 20 20 / 0.3);
+    transition: text-decoration-color 160ms var(--ease-out-soft);
+  }
+  .link:hover {
+    text-decoration-color: currentColor;
+  }
+  .field {
+    height: 48px;
+    width: 100%;
+    border: 1px solid rgb(20 20 20 / 0.18);
+    border-radius: 2px;
+    background: var(--color-paper);
+    padding: 0 12px;
+    font-size: 15px;
+  }
+  textarea.field {
+    height: auto;
+    padding: 12px;
+  }
+  .field:focus-visible {
+    outline: 2px solid var(--color-oxblood);
+    outline-offset: 0;
+    border-color: transparent;
+  }
+  /* The signature: a sewn-in care label, used for prices and fit notes. */
+  .care-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px dashed rgb(20 20 20 / 0.32);
+    background: var(--color-paper);
+    padding: 4px 8px;
+    font-size: 12px;
+    line-height: 16px;
+    font-variant-numeric: tabular-nums;
+    color: var(--color-ink-2);
+  }
+}
+
+dialog::backdrop {
+  background: rgb(20 20 20 / 0.4);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
